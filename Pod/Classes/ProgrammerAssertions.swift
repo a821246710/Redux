@@ -8,7 +8,7 @@
 
 import Foundation
 
-@noreturn public func fatalError(
+@noreturn func fatalError(
     @autoclosure message: () -> String = "",
     file: StaticString = #file,
     line: UInt = #line

@@ -45,10 +45,6 @@ public func createStore(
             fatalError("Cannot dispatch in a middle of dispatch")
         }
 
-        defer {
-            isDispatching = false
-        }
-
         isDispatching = true
         let nextState = currentReducer(
             previousState: currentState,
@@ -57,6 +53,7 @@ public func createStore(
         if let ns = nextState as? AnyEquatable {
             currentState = ns
         }
+        isDispatching = false
 
         for listener in listeners.values {
             listener()
